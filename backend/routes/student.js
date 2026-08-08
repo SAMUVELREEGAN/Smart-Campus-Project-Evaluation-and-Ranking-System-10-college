@@ -130,7 +130,7 @@ router.post(
         if (files.length === 0) {
           return res.status(400).json({ message: "Upload at least one file to submit" });
         }
-        const evaluation = evaluateProject(project);
+        const evaluation = await evaluateProject(project);
         project.automaticMark = evaluation.automaticMark;
         project.automaticBreakdown = evaluation.automaticBreakdown;
         project.status = "auto_evaluated";
@@ -220,7 +220,7 @@ router.put(
         if (project.files.length === 0) {
           return res.status(400).json({ message: "Upload at least one file to submit" });
         }
-        const evaluation = evaluateProject(project);
+        const evaluation = await evaluateProject(project);
         project.automaticMark = evaluation.automaticMark;
         project.automaticBreakdown = evaluation.automaticBreakdown;
         project.status = "auto_evaluated";
@@ -272,7 +272,7 @@ router.post("/projects/:id/submit", async (req, res) => {
       project.session = session._id;
     }
 
-    const evaluation = evaluateProject(project);
+    const evaluation = await evaluateProject(project);
     project.automaticMark = evaluation.automaticMark;
     project.automaticBreakdown = evaluation.automaticBreakdown;
     project.status = "auto_evaluated";
