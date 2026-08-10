@@ -1,5 +1,6 @@
 const API_BASE = "http://localhost:8000/api";
 
+
 export function getAuthStorageKey(panel) {
   return `scpe_auth_${panel}`;
 }
